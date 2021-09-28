@@ -1,4 +1,4 @@
-// Cryptocurrency
+// ScrumCoin
 
 #include <iostream>
 

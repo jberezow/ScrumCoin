@@ -169,7 +169,7 @@ int main() {
     // Data for Prime Block
     Transaction data1;
     time_t data1Time;
-    data1.amount = 1.0;
+    data1.amount = 100.0;
     data1.receiverKey = "Joey Prime";
     data1.senderKey = "Mayer Joey";
     data1.timestamp = time(&data1Time);

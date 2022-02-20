@@ -179,7 +179,7 @@ int main() {
     std::cout << "Is chain valid?" << std::endl
         << ScrumCoin.is_chain_valid() << std::endl;
 
-    std::cout << "Cryptocurrency complete.";
+    std::cout << "Cryptocurrency complete. \n";
     return 0;
 }
 

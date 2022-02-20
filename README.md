@@ -1,6 +1,3 @@
 # ScrumCoin
-*A hobby crypto implementation*
 
-The lads and I are going to try to implement our own blockchain-based currency.
-
-Check out the dev/jon branch for the latest draft. 
+A simple coin for learning about the basics of the blockchain and cryptocurrency.

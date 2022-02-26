@@ -1,8 +1,10 @@
+outfile = scrumcoin
+
 all: main.cpp
-	g++ -Iinclude main.cpp Block.cpp Blockchain.cpp
+	g++ -o ${outfile} -Iinclude *.cpp
 
 run: all
-	./scrumcoin
+	./${outfile}
 
 clean: 
-	$(RM) scrumcoin
+	$(RM) ${outfile}

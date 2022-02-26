@@ -1,5 +1,5 @@
 all: main.cpp
-	g++ -o scrumcoin main.cpp
+	g++ -Iinclude main.cpp Block.cpp Blockchain.cpp
 
 run: all
 	./scrumcoin

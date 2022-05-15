@@ -1,8 +1,15 @@
+outfile = scrumcoin
+test_file = test_exec
+
 all: main.cpp
-	g++ -o scrumcoin main.cpp
+	g++ -o ${outfile} -Iinclude *.cpp src/*.cpp
 
 run: all
-	./scrumcoin
+	./${outfile}
 
 clean: 
-	$(RM) scrumcoin
+	$(RM) ${outfile}
+
+test:
+	g++ -o tests/${test_file} -Iinclude tests/test1.cpp src/*.cpp
+	tests/${test_file}

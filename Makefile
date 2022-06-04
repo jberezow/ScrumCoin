@@ -13,3 +13,8 @@ clean:
 test:
 	g++ -o tests/${test_file} -Iinclude tests/wallet_tests.cpp src/*.cpp
 	tests/${test_file}
+
+
+test1:
+	g++ -o tests/${test_file} -Iinclude tests/test1.cpp src/*.cpp
+	tests/${test_file}

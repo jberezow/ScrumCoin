@@ -31,6 +31,7 @@ void Blockchain::add_block(Transaction d)
 {
     int index = (int)chain.size() - 1;
     Block newBlock(index, d, get_latest_block()->get_hash());
+    chain.push_back(newBlock);
 };
 
 bool Blockchain::is_chain_valid()

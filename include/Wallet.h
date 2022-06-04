@@ -13,18 +13,22 @@ class Wallet
         // Wallet Balance
         double balance = 0.0;
 
-        // Private key, only visible to the owner
+        // User private key, only visible to the owner
         string privateKey;
 
         // Update the Balance
-        void update_balance();
+        void update_balance(double value);
 
         // The blockchain itself
         Blockchain blockchain;
 
+        // Walk through the history of the blockchain to 
+        // summarize user transactions
+        void summarize_user_transactions();
+
     public:
         // Constructor
-        Wallet(Blockchain* chain);
+        Wallet(Blockchain* chain, string userPublicKey);
 
         // The public key that everyone can see
         string publicKey;

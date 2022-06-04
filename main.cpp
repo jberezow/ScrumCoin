@@ -24,13 +24,12 @@ int main() {
     data1.receiverKey = "Joey Prime";
     data1.senderKey = "Mayer Joey";
     data1.timestamp = time(&data1Time);
-
     ScrumCoin.add_block(data1);
 
-    std::cout << "Is chain valid?" << std::endl
-        << ScrumCoin.is_chain_valid() << std::endl;
+    // Check Balance
+    // Check Transaction History
+    // Send Transaction
 
-    std::cout << "Cryptocurrency complete. \n";
     return 0;
 }
 

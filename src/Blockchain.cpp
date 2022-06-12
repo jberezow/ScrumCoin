@@ -1,4 +1,5 @@
 #include <Blockchain.h>
+#include <iostream>
 
 // Blockchain Constructor
 Blockchain::Blockchain()
@@ -29,7 +30,7 @@ Block *Blockchain::get_latest_block()
 
 void Blockchain::add_block(Transaction d)
 {
-    int index = (int)chain.size() - 1;
+    int index = (int)chain.size(); // It was chain.size() - 1 here?
     Block newBlock(index, d, get_latest_block()->get_hash());
     chain.push_back(newBlock);
 };
@@ -47,7 +48,7 @@ bool Blockchain::is_chain_valid()
             return false;
         }
 
-        if(chainLen > 1)
+        if(chainLen > 1 && i != chain.begin())
         {
             Block previousBlock = *(i-1);
             if (currentBlock.get_previous_hash() != previousBlock.get_hash())

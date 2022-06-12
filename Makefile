@@ -10,11 +10,10 @@ run: all
 clean: 
 	$(RM) ${outfile}
 
-test:
+test_wallet:
 	g++ -o tests/${test_file} -Iinclude tests/wallet_tests.cpp src/*.cpp
 	tests/${test_file}
 
-
-test1:
-	g++ -o tests/${test_file} -Iinclude tests/test1.cpp src/*.cpp
+test_blockchain:
+	g++ -g -o tests/${test_file} -Iinclude tests/blockchain_tests.cpp src/*.cpp
 	tests/${test_file}

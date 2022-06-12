@@ -26,12 +26,12 @@ int ChainyConstructorCheck(Wallet wallet, int expected) {
     return false;
 }
 
-// int BalanceCheck(Wallet wallet, int expected_amount) {
-//     if (wallet.return_balance() == expected_amount) {
-//         return true;
-//     }
-//     return false;
-// }
+int BalanceCheck(Wallet wallet, int expected_amount) {
+    if (wallet.return_balance() == expected_amount) {
+        return true;
+    }
+    return false;
+}
 
 int main() {
     string userPublicKey = "The Chris";
@@ -44,7 +44,7 @@ int main() {
 
     // Create starter blockchain for test
     cout << "Chainy Constructor Check... \n";
-    int trxnAmount = 100.0;
+    double trxnAmount = 100.0;
     Blockchain testChain = Blockchain();
     Transaction trxn;
     time_t trxnTime;
@@ -58,9 +58,12 @@ int main() {
         throw std::logic_error("Non-null constructor test failed.\n");
     };
 
-    // if (!BalanceCheck(testWallet)) {
-    //     throw std::logic_error("Balance check failed.\n");
-    // };
+    // Balance check test
+    double expectedAmount = trxnAmount;
+    cout << "Balance Check... \n";
+    if (!BalanceCheck(testWallet, expectedAmount)) {
+        throw std::logic_error("Balance check failed.\n");
+    };
 
     cout << "All tests passed successfully\n";
     return 0;

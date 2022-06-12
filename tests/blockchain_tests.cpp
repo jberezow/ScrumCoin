@@ -9,10 +9,6 @@
 using std::string;
 using std::to_string;
 
-void do_cryptocurrency() {
-    std::cout << "Cryptocurrency processing... \n";
-};
-
 int main() {
     // It Begins
     Blockchain ScrumCoin;
@@ -27,8 +23,11 @@ int main() {
 
     ScrumCoin.add_block(data1);
 
-    std::cout << "Is chain valid?" << std::endl
-        << ScrumCoin.is_chain_valid() << std::endl;
+    std::cout << "Is chain valid?" << std::endl;
+    std::cout << ScrumCoin.is_chain_valid() << std::endl;
+
+    std::cout << "Does chain contain several blocks?" << std::endl;
+    std::cout << (ScrumCoin.chain.size() >= 2) << std::endl; 
 
     std::cout << "Cryptocurrency complete. \n";
     return 0;

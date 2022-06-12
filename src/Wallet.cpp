@@ -26,11 +26,11 @@ void Wallet::summarize_user_transactions() {
         throw std::logic_error("Blockchain null.\n");
     };
 
-    std::cout << blockchain.chain.size() << "\n";
+    //std::cout << blockchain.chain.size() << "\n";
 
     for (int i = 0; i < blockchain.chain.size(); i++) {
         Transaction trxn = blockchain.chain[i].data;
-        std::cout << trxn.senderKey << "\n";
+        //std::cout << trxn.senderKey << "\n";
         if (trxn.receiverKey == publicKey) {
             update_balance(trxn.amount);
             std::cout << "Updated balance, we got paid " << trxn.amount << "\n";

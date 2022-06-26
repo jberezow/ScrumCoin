@@ -10,10 +10,6 @@ run: all
 clean: 
 	$(RM) ${outfile}
 
-test_wallet:
-	g++ -o tests/${test_file} -Iinclude tests/wallet_tests.cpp src/*.cpp
-	tests/${test_file}
-
-test_blockchain:
-	g++ -g -o tests/${test_file} -Iinclude tests/blockchain_tests.cpp src/*.cpp
-	tests/${test_file}
+test:
+	find tests/*.cpp -maxdepth 1 -exec g++ -o tests/${test_file} -Iinclude {} src/*.cpp \; -exec tests/${test_file} \;
+	@echo All tests passed successfully

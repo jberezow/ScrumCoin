@@ -8,6 +8,7 @@
 
 using std::string;
 using std::to_string;
+using std::cout;
 
 int main() {
     // It Begins
@@ -23,13 +24,26 @@ int main() {
 
     ScrumCoin.add_block(data1);
 
-    std::cout << "Is chain valid?" << std::endl;
-    std::cout << ScrumCoin.is_chain_valid() << std::endl;
+    // Test Output
 
-    std::cout << "Does chain contain several blocks?" << std::endl;
-    std::cout << (ScrumCoin.chain.size() >= 2) << std::endl; 
+    std::cout << "Running Test: Blockchain" << std::endl << "\n";
+    std::cout << "Chain Validity Check..." << std::endl;
+    if (!ScrumCoin.is_chain_valid()) {
+        throw std::logic_error("Null Constructor test failed.\n");
+    }
+    else {
+        std::cout << "Test passed\n";
+    }
+    
+    std::cout << "Multiple Blocks Check..." << std::endl;
+    if (ScrumCoin.chain.size() < 2) {
+        throw std::logic_error("Null Constructor test failed.\n");
+    }
+    else {
+        std::cout << "Test passed\n";
+    }
 
-    std::cout << "Cryptocurrency complete. \n";
+    std::cout << "\n";
     return 0;
 }
 

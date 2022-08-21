@@ -27,7 +27,9 @@ void Wallet::summarize_user_transactions() {
     };
 
     //std::cout << blockchain.chain.size() << "\n";
-
+    // TODO: We should be maintaining a state that
+    // indicates what the last checked transaction was
+    balance = 0;
     for (int i = 0; i < blockchain.chain.size(); i++) {
         Transaction trxn = blockchain.chain[i].data;
         //std::cout << trxn.senderKey << "\n";
@@ -45,4 +47,24 @@ void Wallet::summarize_user_transactions() {
 double Wallet::return_balance()
 {
     return balance;
+}
+
+bool Wallet::send(double amount, string recipient) {
+    try {
+        Transaction trxn;
+        time_t trxnTime;
+        trxn.amount = amount;
+        trxn.receiverKey = recipient;
+        trxn.senderKey = publicKey;
+        trxn.timestamp = time(&trxnTime);
+        
+        blockchain.add_block(trxn);
+        summarize_user_transactions();
+        return true;
+    }
+    catch (std::exception e) {
+        std::cout << "Send failed" << "\n";
+        std::cout << e.what() << "\n";
+        return false;
+    }
 }

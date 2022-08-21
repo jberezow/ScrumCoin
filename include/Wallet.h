@@ -37,7 +37,8 @@ class Wallet
         double return_balance();
 
         // Send money, return True if successful
-        bool send();
+        bool send(double amount, string recipient);
+    
 };
 
 #endif

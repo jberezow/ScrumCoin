@@ -19,14 +19,21 @@ int NullConstructorCheck(Wallet wallet){
     return false;
 };
 
-int ChainyConstructorCheck(Wallet wallet, int expected) {
-    if (wallet.return_balance() == expected) {
+int ChainyConstructorCheck(Wallet wallet, int expected_amount) {
+    if (wallet.return_balance() == expected_amount) {
         return true;
     }
     return false;
 }
 
 int BalanceCheck(Wallet wallet, int expected_amount) {
+    if (wallet.return_balance() == expected_amount) {
+        return true;
+    }
+    return false;
+}
+
+int SendCheck(Wallet wallet, int expected_amount) {
     if (wallet.return_balance() == expected_amount) {
         return true;
     }
@@ -50,17 +57,17 @@ int main() {
 
     // Create starter blockchain for test
     cout << "Chainy Constructor Check... \n";
-    double trxnAmount = 100.0;
+    double startAmount = 100.0;
     Blockchain testChain = Blockchain();
     Transaction trxn;
     time_t trxnTime;
-    trxn.amount = trxnAmount;
+    trxn.amount = startAmount;
     trxn.receiverKey = userPublicKey;
     trxn.senderKey = "Mayer Joey";
     trxn.timestamp = time(&trxnTime);
     testChain.add_block(trxn);
     testWallet = Wallet(&testChain, userPublicKey);
-    if (!ChainyConstructorCheck(testWallet, trxnAmount)) {
+    if (!ChainyConstructorCheck(testWallet, startAmount)) {
         throw std::logic_error("Non-null constructor test failed.\n");
     }
     else {
@@ -68,7 +75,7 @@ int main() {
     }
 
     // Balance check test
-    double expectedAmount = trxnAmount;
+    double expectedAmount = startAmount;
     cout << "Balance Check... \n";
     if (!BalanceCheck(testWallet, expectedAmount)) {
         throw std::logic_error("Balance check failed.\n");
@@ -77,6 +84,26 @@ int main() {
         cout << "Test passed\n";
     }
 
+    // Send test
+    double sendAmount = 51;
+    cout << "Send Check... \n";
+    if (testWallet.send(sendAmount, "Mayer Joey")) {
+        cout << "Successfully sent money" << "\n";
+    }
+    else {
+        throw std::logic_error("Send failed.\n");
+    }
+    cout << testWallet.return_balance() << "\n";
+    expectedAmount = startAmount - sendAmount;
+    if (!SendCheck(testWallet, expectedAmount)) {
+        throw std::logic_error("Send check failed.\n");
+    }
+    else {
+        cout << "Test passed\n";
+    }
+
+
+    
     std::cout << "\n";
     return 0;
 }

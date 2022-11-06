@@ -5,45 +5,17 @@
 #include <string>
 
 #include <Blockchain.h>
+#include <CommandLineUtils.h>
 
 using std::string;
 using std::to_string;
 using std::vector;
 using std::cout;
 
-// TODO: Load the relevant function into the struct
-struct command {
-    string command_name;
-    string description;
-};
-vector<command> commands;
-
-// Eventually read from textfile
-void load_commands() {
-    command exit {
-        "Exit",
-        "Exits the program"
-    };
-    command check_balance {
-        "Check Balance",
-        "Checks current wallet balance"
-    };
-    commands.push_back(exit);
-    commands.push_back(check_balance);
-}
-
-void help() {
-    cout << "Here are your options:\n";
-    for (command cmd: commands) {
-        cout << cmd.command_name << ": " << cmd.description << "\n";
-    }
-    cout << "\n";
-}
-
 int main() {
     // It Begins
     Blockchain ScrumCoin;
-    load_commands();
+    vector<command> commands = load_ajimbo_cli_commands();
 
     // Data for Prime Block
     Transaction data1;
@@ -60,14 +32,12 @@ int main() {
         cout << "What would you like to do?\n";
         string selection;
         std::cin >> selection;
-        if (selection == "help" || selection == "h") {
-            help();
-        }
+
+        commands[std::stoi(selection)].operation();
+
         if (selection == "exit" || selection == "1") {
-            std::cout << "Goodbye!" << "\n";
             break;
         }
-        // commands[selection].operation;
     }
 
     return 0;

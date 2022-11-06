@@ -3,6 +3,7 @@
 #include <ctime>
 #include <vector>
 #include <string>
+#include <functional>
 
 #include <Blockchain.h>
 #include <CommandLineUtils.h>
@@ -15,7 +16,7 @@ using std::cout;
 int main() {
     // It Begins
     Blockchain ScrumCoin;
-    vector<command> commands = load_ajimbo_cli_commands();
+    // vector<cli_command> commands = load_ajimbo_cli_commands();
 
     // Data for Prime Block
     Transaction data1;
@@ -27,18 +28,22 @@ int main() {
     ScrumCoin.add_block(data1);
 
     // CLI Loop
-    cout << "Welcome to ScrumCoin\n";
-    while (true) {
-        cout << "What would you like to do?\n";
-        string selection;
-        std::cin >> selection;
+    // cout << "Welcome to ScrumCoin\n";
+    // while (true) {
+    //     cout << "What would you like to do?\n";
+    //     string selection;
+    //     std::cin >> selection;
 
-        commands[std::stoi(selection)].operation();
+    //     if (selection == "exit" || selection == "1") {
+    //         break;
+    //     }
 
-        if (selection == "exit" || selection == "1") {
-            break;
-        }
-    }
+    //     for (cli_command command : commands) {
+    //         if (selection == command.command_name) {
+    //             command.operation();
+    //         }
+    //     }
+    // }
 
     return 0;
 }

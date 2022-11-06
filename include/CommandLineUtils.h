@@ -6,24 +6,29 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include <map>
 
 using std::string;
 using std::to_string;
 using std::vector;
 using std::cout;
 
-vector<command> load_ajimbo_cli_commands();
+class CLI_Manager {
+    struct cli_command {
+        string command_name;
+        string description;
+        std::function<void()> operation;
+    };
 
-void help();
+    vector<cli_command> cli_commands;
 
-void check_balance();
+    CLI_Manager();
 
-void exit_operation();
+    // void help();
 
-struct command {
-    string command_name;
-    string description;
-    std::function<void()> operation;
+    void check_balance();
+
+    void exit_operation();
 };
 
 #endif

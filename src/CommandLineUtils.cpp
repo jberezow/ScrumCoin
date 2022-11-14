@@ -14,17 +14,15 @@ using std::cout;
 
 
 CLI_Manager::CLI_Manager() {
-    check_balance();
-    std::function<void()> check_balance_func = check_balance;
     cli_command check_balance_cli_command {
         "Check",
         "Checks current wallet balance",
-        check_balance
+        CLI_Manager::check_balance
     };
     cli_command help_cli_command {
         "Help",
         "Displays cli_command line options",
-        help
+        CLI_Manager::help
     };
     cli_commands.push_back(check_balance_cli_command);
     cli_commands.push_back(help_cli_command);

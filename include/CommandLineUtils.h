@@ -13,22 +13,26 @@ using std::to_string;
 using std::vector;
 using std::cout;
 
+typedef void(CLI_Manager::*Func)();
+
 class CLI_Manager {
-    struct cli_command {
-        string command_name;
-        string description;
-        std::function<void()> operation;
-    };
+    public:
+        struct cli_command {
+            string command_name;
+            string description;
+            public:
+                CLI_Manager::Func f;
+        };
 
-    vector<cli_command> cli_commands;
+        vector<cli_command> cli_commands;
 
-    CLI_Manager();
+        CLI_Manager();
 
-    // void help();
+        void help();
 
-    void check_balance();
+        void check_balance();
 
-    void exit_operation();
+        void exit_operation();
 };
 
 #endif

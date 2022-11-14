@@ -13,10 +13,10 @@ using std::vector;
 using std::cout;
 
 
-CLI_Manager::CLI_Manager() {
-    check_balance();
-    std::function<void()> check_balance_func = check_balance;
-    cli_command check_balance_cli_command {
+vector<CLI_Manager::cli_command> CLI_Manager::cli_commands = {};
+
+void CLI_Manager::initialize() {
+    CLI_Manager::cli_command check_balance_cli_command {
         "Check",
         "Checks current wallet balance",
         check_balance
@@ -26,9 +26,11 @@ CLI_Manager::CLI_Manager() {
         "Displays cli_command line options",
         help
     };
-    cli_commands.push_back(check_balance_cli_command);
-    cli_commands.push_back(help_cli_command);
-    
+    CLI_Manager::cli_commands = {
+        help_cli_command,
+        check_balance_cli_command
+    };
+    std::cout << "Initialized command list with " << cli_commands.size() << " entries \n";
 };
 // Eventually read from textfile
 
@@ -42,4 +44,3 @@ void CLI_Manager::help() {
 void CLI_Manager::check_balance() {
 	cout << "NOT YET IMPLEMENTED" << "\n";
 }
-

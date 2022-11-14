@@ -16,7 +16,7 @@ using std::cout;
 int main() {
     // It Begins
     Blockchain ScrumCoin;
-    // vector<cli_command> commands = load_ajimbo_cli_commands();
+    CLI_Manager::initialize();
 
     // Data for Prime Block
     Transaction data1;
@@ -28,22 +28,23 @@ int main() {
     ScrumCoin.add_block(data1);
 
     // CLI Loop
-    // cout << "Welcome to ScrumCoin\n";
-    // while (true) {
-    //     cout << "What would you like to do?\n";
-    //     string selection;
-    //     std::cin >> selection;
+    cout << "Welcome to ScrumCoin\n";
+    while (true) {
+        cout << "What would you like to do?\n";
+        string selection;
+        std::cin >> selection;
 
-    //     if (selection == "exit" || selection == "1") {
-    //         break;
-    //     }
+        if (selection == "exit" || selection == "1") {
+            break;
+        }
 
-    //     for (cli_command command : commands) {
-    //         if (selection == command.command_name) {
-    //             command.operation();
-    //         }
-    //     }
-    // }
+        for (CLI_Manager::cli_command command : CLI_Manager::cli_commands) {
+            if (selection == command.command_name) {
+                // cout << "Running command " << command.command_name << "\n";
+                command.operation();
+            }
+        }
+    }
 
     return 0;
 }

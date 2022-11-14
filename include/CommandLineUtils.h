@@ -14,21 +14,20 @@ using std::vector;
 using std::cout;
 
 class CLI_Manager {
-    struct cli_command {
-        string command_name;
-        string description;
-        std::function<void()> operation;
-    };
+    static void help();
 
-    vector<cli_command> cli_commands;
+    static void check_balance();
 
-    CLI_Manager();
+    public: 
+        struct cli_command {
+            string command_name;
+            string description;
+            std::function<void()> operation;
+        };
 
-    // void help();
+        static void initialize();
 
-    void check_balance();
-
-    void exit_operation();
+        static vector<cli_command> cli_commands;
 };
 
 #endif

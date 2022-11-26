@@ -14,8 +14,13 @@ using std::cout;
 
 
 vector<CLI_Manager::cli_command> CLI_Manager::cli_commands = {};
+Wallet CLI_Manager::activeWallet = Wallet();
 
-void CLI_Manager::initialize() {
+void CLI_Manager::initialize(Wallet wallet) {
+    // Initialize wallet
+    activeWallet = wallet;
+
+    // Initialize commands
     CLI_Manager::cli_command check_balance_cli_command {
         "Check",
         "Checks current wallet balance",
@@ -26,9 +31,15 @@ void CLI_Manager::initialize() {
         "Displays cli_command line options",
         help
     };
+    cli_command send_cli_command {
+        "Send",
+        "Send money to Joey",
+        send
+    };
     CLI_Manager::cli_commands = {
         help_cli_command,
-        check_balance_cli_command
+        check_balance_cli_command,
+        send_cli_command
     };
     std::cout << "Initialized command list with " << cli_commands.size() << " entries \n";
 };
@@ -42,5 +53,9 @@ void CLI_Manager::help() {
     cout << "\n";
 }
 void CLI_Manager::check_balance() {
-	cout << "NOT YET IMPLEMENTED" << "\n";
+	cout << "Your balance: " << activeWallet.return_balance() << "\n";
+}
+
+void CLI_Manager::send() {
+	cout << "IMPLEMENT NEXT" << "\n";
 }

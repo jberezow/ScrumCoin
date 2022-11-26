@@ -27,6 +27,8 @@ class Wallet
         void summarize_user_transactions();
 
     public:
+        // Empty constructor; for initialization
+        Wallet();
         // Constructor
         Wallet(Blockchain* chain, string userPublicKey);
 

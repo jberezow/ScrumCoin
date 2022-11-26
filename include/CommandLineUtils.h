@@ -8,6 +8,8 @@
 #include <functional>
 #include <map>
 
+#include <Wallet.h>
+
 using std::string;
 using std::to_string;
 using std::vector;
@@ -17,6 +19,10 @@ class CLI_Manager {
     static void help();
 
     static void check_balance();
+    
+    static void send();
+
+    static Wallet activeWallet;
 
     public: 
         struct cli_command {
@@ -25,7 +31,7 @@ class CLI_Manager {
             std::function<void()> operation;
         };
 
-        static void initialize();
+        static void initialize(Wallet wallet);
 
         static vector<cli_command> cli_commands;
 };

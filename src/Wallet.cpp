@@ -3,7 +3,8 @@
 #include <stdexcept>
 #include <iostream>
 
-
+// Empty constructor
+Wallet::Wallet() {};
 // Wallet Constructor
 Wallet::Wallet(Blockchain* chain, string userPublicKey)
 {

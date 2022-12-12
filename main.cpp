@@ -33,10 +33,16 @@ int main() {
 
     // CLI Loop
     cout << "Welcome to ScrumCoin\n";
+    
     while (true) {
         cout << "What would you like to do?\n";
-        string selection;
-        std::cin >> selection;
+        std::vector<std::string> args;
+        std::string s;
+        while (std::getline(std::cin, s, '\n')) {
+            args.push_back(s);
+        }
+
+        std::string selection = args[0];
 
         if (selection == "exit" || selection == "1") {
             break;
